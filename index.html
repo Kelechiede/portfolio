@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kelechukwu Innocent Ede — Software Engineer, Data Scientist & Database Developer</title>
+  <meta name="description" content="Portfolio of Kelechukwu Innocent Ede — MSc Software Engineering (MUN), MSc Data Science (Oslo Met). Software engineer, data scientist, data analyst, and database developer." />
+  <meta property="og:title" content="Kelechukwu Ede — Software Engineer, Data Scientist & Database Developer" />
+  <meta property="og:description" content="Graduate researcher at Memorial University of Newfoundland. Open to software engineering, data science, data analytics, and database engineering opportunities." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #0e0e0e;
+      --ink-2:     #3a3a3a;
+      --ink-3:     #7a7a7a;
+      --paper:     #f5f2ec;
+      --paper-2:   #eceae3;
+      --paper-3:   #e2dfd7;
+      --accent:    #1a5c3a;
+      --accent-lt: #d6ede2;
+      --amber:     #c85a00;
+      --amber-lt:  #fdebd8;
+      --rule:      rgba(14,14,14,0.12);
+      --serif:     'DM Serif Display', Georgia, serif;
+      --sans:      'Outfit', system-ui, sans-serif;
+      --mono:      'DM Mono', monospace;
+      --radius:    6px;
+      --max:       1100px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NOISE TEXTURE overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(245,242,236,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 2rem;
+    }
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-2);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* Resume button in nav */
+    .btn-resume-nav {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      padding: 0.35rem 0.9rem;
+      border-radius: var(--radius);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .btn-resume-nav:hover { background: var(--accent); color: #fff; }
+
+    /* Hamburger button */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: var(--radius);
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .hamburger:hover { background: var(--paper-2); }
+    .hamburger span {
+      display: block;
+      height: 1.5px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+      transform-origin: center;
+    }
+    .hamburger span:nth-child(3) { width: 60%; }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { width: 100%; transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 56px;
+      left: 0;
+      right: 0;
+      background: rgba(245,242,236,0.98);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--rule);
+      z-index: 99;
+      padding: 1.5rem 2rem 2rem;
+      flex-direction: column;
+      gap: 0;
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+      pointer-events: none;
+    }
+    .mobile-menu.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+    .mobile-menu a {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--ink-2);
+      text-decoration: none;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--rule);
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--accent); }
+    .mobile-menu a .m-arrow { opacity: 0.35; font-size: 0.9rem; }
+    .mobile-menu .mobile-resume {
+      margin-top: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.4rem;
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: none !important;
+      transition: background 0.2s;
+    }
+    .mobile-menu .mobile-resume:hover { background: var(--accent); color: #fff; }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 2rem; }
+    .container { max-width: var(--max); margin: 0 auto; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: calc(100vh - 56px);
+      display: flex;
+      align-items: center;
+      padding: 4rem 2rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg-text {
+      position: absolute;
+      top: 50%;
+      right: -2rem;
+      transform: translateY(-50%);
+      font-family: var(--serif);
+      font-size: clamp(8rem, 18vw, 18rem);
+      color: rgba(14,14,14,0.04);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .hero-grid {
+      max-width: var(--max);
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 4rem;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--ink-2);
+      line-height: 1.75;
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.6rem;
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--rule);
+    }
+    .btn-outline:hover { background: var(--paper-2); border-color: var(--ink-3); }
+
+    /* Hero card */
+    .hero-card {
+      background: var(--paper-2);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 1.8rem;
+      position: relative;
+    }
+    .hero-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      color: #fff;
+      margin-bottom: 1.2rem;
+    }
+    .hero-card-name {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      margin-bottom: 0.2rem;
+    }
+    .hero-card-role {
+      font-size: 0.82rem;
+      color: var(--ink-3);
+      margin-bottom: 1.4rem;
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 1.4rem;
+    }
+    .stat-box {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 0.8rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      color: var(--ink);
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      color: var(--ink-3);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+    .badge {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.04em;
+    }
+    .badge-green { background: var(--accent-lt); color: var(--accent); }
+    .badge-amber { background: var(--amber-lt); color: var(--amber); }
+    .badge-gray  { background: var(--paper-3); color: var(--ink-2); }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+      max-width: 80px;
+    }
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      font-size: 1rem;
+      color: var(--ink-2);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 3.5rem;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--paper-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .about-text p {
+      font-size: 1rem;
+      color: var(--ink-2);
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+    }
+    .about-text p strong { color: var(--ink); font-weight: 500; }
+    .timeline { list-style: none; }
+    .timeline li {
+      display: flex;
+      gap: 1.2rem;
+      padding-bottom: 1.8rem;
+      position: relative;
+    }
+    .timeline li:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 38px;
+      bottom: 0;
+      width: 1px;
+      background: var(--rule);
+    }
+    .tl-dot {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--paper-3);
+      border: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.8rem;
+      color: var(--ink-2);
+    }
+    .tl-dot.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .tl-year { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-3); margin-bottom: 0.15rem; }
+    .tl-title { font-size: 0.92rem; font-weight: 500; color: var(--ink); }
+    .tl-place { font-size: 0.82rem; color: var(--ink-3); }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--paper); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.2rem;
+    }
+    .skill-group {
+      background: var(--paper-2);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 1.4rem;
+    }
+    .skill-group-title {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-tag {
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 20px;
+      color: var(--ink-2);
+      transition: all 0.2s;
+    }
+    .skill-tag:hover { background: var(--accent-lt); border-color: var(--accent); color: var(--accent); }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--paper-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.4rem;
+    }
+    .project-card {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-card:hover { border-color: var(--ink-3); transform: translateY(-2px); }
+    .project-card.featured { border-color: var(--accent); border-width: 1.5px; }
+    .project-num {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--ink-3);
+    }
+    .project-num.green { color: var(--accent); }
+    .project-title {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      line-height: 1.25;
+      color: var(--ink);
+    }
+    .project-desc {
+      font-size: 0.88rem;
+      color: var(--ink-2);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 5px; }
+    .project-stack span {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      padding: 2px 8px;
+      background: var(--paper-2);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      color: var(--ink-2);
+    }
+    .project-links { display: flex; gap: 0.8rem; margin-top: 0.2rem; }
+    .project-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: opacity 0.2s;
+    }
+    .project-links a:hover { opacity: 0.7; }
+    .project-links a.muted { color: var(--ink-3); }
+
+    /* ── EDUCATION & CERTS ── */
+    #education { background: var(--paper); }
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+    }
+    .edu-card {
+      background: var(--paper-2);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .edu-degree {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      margin-bottom: 0.25rem;
+    }
+    .edu-school { font-size: 0.85rem; color: var(--ink-2); margin-bottom: 0.5rem; }
+    .edu-year { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-3); }
+    .cert-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .cert-row:last-child { border-bottom: none; }
+    .cert-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 500;
+      font-family: var(--mono);
+      flex-shrink: 0;
+    }
+    .cert-name { font-size: 0.88rem; font-weight: 500; color: var(--ink); }
+    .cert-issuer { font-size: 0.78rem; color: var(--ink-3); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--ink); color: var(--paper); }
+    #contact .section-label { color: #6fcfa0; }
+    #contact .section-label::after { background: rgba(255,255,255,0.12); }
+    #contact h2 { color: var(--paper); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .contact-text {
+      font-size: 1rem;
+      color: rgba(245,242,236,0.65);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 0.8rem; }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: var(--paper);
+      transition: background 0.2s, border-color 0.2s;
+      font-size: 0.9rem;
+    }
+    .contact-link:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.25); }
+    .contact-link-icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-family: var(--mono);
+      color: #6fcfa0;
+      flex-shrink: 0;
+    }
+    .contact-link span { flex: 1; }
+    .contact-link .arrow { opacity: 0.4; font-size: 1rem; }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-form input,
+    .contact-form textarea {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 0.85rem 1rem;
+      color: var(--paper);
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: rgba(245,242,236,0.3); }
+    .contact-form input:focus,
+    .contact-form textarea:focus { border-color: #6fcfa0; }
+    .contact-form textarea { min-height: 120px; }
+    .btn-light {
+      background: var(--paper);
+      color: var(--ink);
+      align-self: flex-start;
+    }
+    .btn-light:hover { background: #fff; transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #080808;
+      color: rgba(245,242,236,0.35);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.78rem;
+      font-family: var(--mono);
+      letter-spacing: 0.06em;
+    }
+    footer a { color: rgba(245,242,236,0.5); text-decoration: none; }
+    footer a:hover { color: #6fcfa0; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.7s ease both; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.22s; }
+    .delay-3 { animation-delay: 0.34s; }
+    .delay-4 { animation-delay: 0.46s; }
+
+    /* Resume download button (hero) */
+    .btn-resume {
+      background: var(--accent-lt);
+      color: var(--accent);
+      border: 1px solid rgba(26,92,58,0.25);
+    }
+    .btn-resume:hover { background: var(--accent); color: #fff; transform: translateY(-1px); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 820px) {
+      .hero-grid, .about-grid, .edu-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-bg-text { display: none; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu { display: flex; }
+      section { padding: 4rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="#hero">K. I. Ede</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="Kelechi_Ede_Resume.pdf" download class="btn-resume-nav">&#8595; Resume</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+    <a href="#about" class="mobile-nav-link">About <span class="m-arrow">&rarr;</span></a>
+    <a href="#skills" class="mobile-nav-link">Skills <span class="m-arrow">&rarr;</span></a>
+    <a href="#projects" class="mobile-nav-link">Projects <span class="m-arrow">&rarr;</span></a>
+    <a href="#education" class="mobile-nav-link">Education <span class="m-arrow">&rarr;</span></a>
+    <a href="#contact" class="mobile-nav-link">Contact <span class="m-arrow">&rarr;</span></a>
+    <a href="Kelechi_Ede_Resume.pdf" download class="mobile-resume">&#8595;&nbsp; Download Resume (PDF)</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg-text">KIE</div>
+    <div class="hero-grid">
+      <div>
+        <p class="hero-eyebrow fade-up">Available for opportunities</p>
+        <h1 class="fade-up delay-1">
+          Software Engineer,<br>
+          Data Scientist &amp;<br>
+          <em>Database Developer</em>
+        </h1>
+        <p class="hero-desc fade-up delay-2">
+          I build intelligent systems at the intersection of data, software, and communications.
+          Software engineer, data scientist, data analyst (Python, Power BI, Tableau), and
+          database developer — currently pursuing MSc Software Engineering at Memorial University
+          of Newfoundland, with a completed MSc in Data Science from Oslo Metropolitan University
+          and a BSc Computer Science from Benson Idahosa University, Nigeria.
+        </p>
+        <div class="hero-actions fade-up delay-3">
+          <a href="#projects" class="btn btn-primary">View projects &rarr;</a>
+          <a href="Kelechi_Ede_Resume.pdf" download class="btn btn-resume">&#8595; Download Resume</a>
+          <a href="#contact" class="btn btn-outline">Get in touch</a>
+        </div>
+      </div>
+
+      <div class="hero-card fade-up delay-4">
+        <div class="hero-avatar">KE</div>
+        <p class="hero-card-name">Kelechukwu Innocent Ede</p>
+        <p class="hero-card-role">Software Engineer &middot; Data Scientist &middot; Data Analyst &middot; Database Developer &middot; Open to remote</p>
+        <div class="hero-stats">
+          <div class="stat-box">
+            <span class="stat-num">3</span>
+            <span class="stat-label">Degrees earned</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">14</span>
+            <span class="stat-label">Live projects</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">2</span>
+            <span class="stat-label">Certifications</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">3+</span>
+            <span class="stat-label">Yrs experience</span>
+          </div>
+        </div>
+        <div class="hero-badges">
+          <span class="badge badge-green">Python</span>
+          <span class="badge badge-green">FastAPI</span>
+          <span class="badge badge-green">Data Science</span>
+          <span class="badge badge-amber">Power BI &amp; Tableau</span>
+          <span class="badge badge-amber">Oracle Certified</span>
+          <span class="badge badge-amber">IBM Certified</span>
+          <span class="badge badge-gray">Database Developer</span>
+          <span class="badge badge-gray">MUN &bull; Oslo Met &bull; BIU</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="section-label">About me</p>
+          <h2>Building where data<br>meets <em>engineering</em></h2>
+          <p>
+            I'm <strong>Kelechukwu Innocent Ede</strong>, a software engineer, data scientist,
+            data analyst, and database developer currently based in Canada. I hold three degrees
+            spanning computer science, data science, and software engineering, and bring a
+            full-stack perspective to every problem — from database schema design to ML pipelines
+            to interactive dashboards.
+          </p>
+          <p>
+            At Memorial University of Newfoundland I'm researching <strong>Visible Light
+            Communications (VLC)</strong> under Dr. Ibrahim Al-Nahhal, while taking advanced
+            courses in Digital Communications and Software Design &amp; Specification.
+          </p>
+          <p>
+            I completed an <strong>MSc in Data Science at Oslo Metropolitan University</strong>
+            covering statistical modelling, machine learning pipelines, and interactive data
+            visualisation. My <strong>BSc in Computer Science from Benson Idahosa University,
+            Nigeria (2018)</strong> gave me a strong foundation in algorithms, systems, and
+            software development.
+          </p>
+          <p>
+            As a <strong>Data Analyst</strong> I work with Python, Power BI, and Tableau to
+            turn raw data into actionable insights. As a <strong>Database Developer</strong>
+            I design, optimise, and manage relational databases using SQL, PostgreSQL, and SQLite.
+            I also hold professional certifications from <strong>Oracle</strong> and <strong>IBM</strong>
+            and have industry experience as a <strong>Data Analytics Instructor</strong>.
+          </p>
+          <div style="margin-top:1.5rem;">
+            <a href="mailto:info@kelechiededata.org" class="btn btn-primary" style="font-size:0.85rem;">
+              info@kelechiededata.org &rarr;
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <p class="section-label" style="margin-bottom:1.4rem;">Timeline</p>
+          <ul class="timeline">
+            <li>
+              <div class="tl-dot active">&#9679;</div>
+              <div>
+                <p class="tl-year">2025 &ndash; Present</p>
+                <p class="tl-title">MSc Software Engineering</p>
+                <p class="tl-place">Memorial University of Newfoundland, Canada</p>
+              </div>
+            </li>
+            <li>
+              <div class="tl-dot">&#9675;</div>
+              <div>
+                <p class="tl-year">2022 &ndash; 2024</p>
+                <p class="tl-title">MSc Data Science</p>
+                <p class="tl-place">Oslo Metropolitan University, Norway</p>
+              </div>
+            </li>
+            <li>
+              <div class="tl-dot">&#9675;</div>
+              <div>
+                <p class="tl-year">2018 &ndash; 2022</p>
+                <p class="tl-title">Data Analytics Instructor</p>
+                <p class="tl-place">Industry &middot; Oracle &amp; IBM Certified</p>
+              </div>
+            </li>
+            <li>
+              <div class="tl-dot">&#9675;</div>
+              <div>
+                <p class="tl-year">Ongoing</p>
+                <p class="tl-title">Child Care Services Certification</p>
+                <p class="tl-place">AECENL / Keyin College, NL</p>
+              </div>
+            </li>
+            <li>
+              <div class="tl-dot">&#9675;</div>
+              <div>
+                <p class="tl-year">2014 &ndash; 2018</p>
+                <p class="tl-title">BSc Computer Science</p>
+                <p class="tl-place">Benson Idahosa University, Benin City, Nigeria</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <p class="section-label">Technical skills</p>
+      <h2>What I work with</h2>
+      <p class="section-sub">Spanning backend systems, data engineering, machine learning, and digital communications research.</p>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <p class="skill-group-title">Languages</p>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">HTML / CSS</span>
+            <span class="skill-tag">Bash</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Data analytics</p>
+          <div class="skill-tags">
+            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">Tableau</span>
+            <span class="skill-tag">Python (analytics)</span>
+            <span class="skill-tag">pandas</span>
+            <span class="skill-tag">Excel (advanced)</span>
+            <span class="skill-tag">DAX</span>
+            <span class="skill-tag">Data storytelling</span>
+            <span class="skill-tag">Dashboard design</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Database development</p>
+          <div class="skill-tags">
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">SQLite</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">Schema design</span>
+            <span class="skill-tag">Query optimisation</span>
+            <span class="skill-tag">Indexing &amp; tuning</span>
+            <span class="skill-tag">REST API + DB integration</span>
+            <span class="skill-tag">ORM (SQLAlchemy)</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Frameworks &amp; libraries</p>
+          <div class="skill-tags">
+            <span class="skill-tag">FastAPI</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Next.js</span>
+            <span class="skill-tag">Plotly / Dash</span>
+            <span class="skill-tag">D3.js</span>
+            <span class="skill-tag">scikit-learn</span>
+            <span class="skill-tag">pandas</span>
+            <span class="skill-tag">NumPy</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Data &amp; ML</p>
+          <div class="skill-tags">
+            <span class="skill-tag">Machine Learning</span>
+            <span class="skill-tag">Data Visualisation</span>
+            <span class="skill-tag">Statistical Modelling</span>
+            <span class="skill-tag">Time-Series (ARIMA)</span>
+            <span class="skill-tag">Feature Engineering</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Infrastructure &amp; tools</p>
+          <div class="skill-tags">
+            <span class="skill-tag">Git / GitHub</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">SQLite / PostgreSQL</span>
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">Vercel</span>
+            <span class="skill-tag">Render</span>
+            <span class="skill-tag">Linux / Ubuntu</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-title">CS fundamentals</p>
+          <div class="skill-tags">
+            <span class="skill-tag">Algorithms &amp; complexity</span>
+            <span class="skill-tag">Formal languages</span>
+            <span class="skill-tag">OOP &amp; design patterns</span>
+            <span class="skill-tag">Software specification</span>
+            <span class="skill-tag">Data structures</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-title">Research areas</p>
+          <div class="skill-tags">
+            <span class="skill-tag">Visible Light Comms (VLC)</span>
+            <span class="skill-tag">Digital communications</span>
+            <span class="skill-tag">Cloud computing</span>
+            <span class="skill-tag">Serverless / cold start</span>
+            <span class="skill-tag">SLA-aware scheduling</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <p class="section-label">Selected work</p>
+      <h2>Projects &amp; research</h2>
+      <p class="section-sub">14 projects spanning research, full-stack development, data analytics, database engineering, and cloud computing — all publicly hosted and linked to GitHub.</p>
+      <div class="projects-grid">
+
+        <div class="project-card featured">
+          <p class="project-num green">01 &mdash; Featured</p>
+          <p class="project-title">VLC Research Simulation</p>
+          <p class="project-desc">
+            Interactive simulation of Visible Light Communication systems — BER vs SNR curves,
+            modulation scheme comparisons (OOK, PPM), and channel modelling. Built for my ENGI 9872
+            research project under Dr. Ibrahim Al-Nahhal at MUN.
+          </p>
+          <div class="project-stack">
+            <span>Python</span><span>FastAPI</span><span>Plotly</span><span>NumPy</span>
+          </div>
+          <div class="project-links">
+            <a href="#" aria-label="Live demo">&#9654; Live demo</a>
+            <a href="https://github.com/kelechiede" class="muted" target="_blank" rel="noopener">GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <p class="project-num">02</p>
+          <p class="project-title">Canadian Real Estate Visualiser</p>
+          <p class="project-desc">
+            Animated choropleth maps and Plotly visualisations of Canadian housing market trends
+            by province. Features D3.js interactive timelines and a design study notebook.
+            Built for COMP 6934 (Data Visualisation).
+          </p>
+          <div class="project-stack">
+            <span>Python</span><span>Plotly</span><span>D3.js</span><span>pandas</span>
+          </div>
+          <div class="project-links">
+            <a href="#" aria-label="Live demo">&#9654; Live demo</a>
+            <a href="https://github.com/kelechiede" class="muted" target="_blank" rel="noopener">GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <p class="project-num">03</p>
+          <p class="project-title">Clinic Management System</p>
+          <p class="project-desc">
+            Full-stack clinic MVP with patient registration, appointment management, and a
+            REST API. Built with FastAPI and SQLite, demonstrating production-style backend
+            architecture with JWT auth and OpenAPI docs.
+          </p>
+          <div class="project-stack">
+            <span>FastAPI</span><span>SQLite</span><span>Python</span><span>REST API</span>
+          </div>
+          <div class="project-links">
+            <a href="#" aria-label="Live demo">&#9654; Live demo</a>
+            <a href="https://github.com/kelechiede" class="muted" target="_blank" rel="noopener">GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <p class="project-num">04</p>
+          <p class="project-title">Sudoku Solver CLI</p>
+          <p class="project-desc">
+            Constraint propagation solver using the MRV (Minimum Remaining Values) heuristic.
+            Solves any valid Sudoku puzzle from the command line. Built for ENGI 9818
+            (Computer Software Foundations).
+          </p>
+          <div class="project-stack">
+            <span>Python</span><span>Constraint propagation</span><span>MRV heuristic</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/kelechiede" class="muted" target="_blank" rel="noopener">GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <p class="project-num">05</p>
+          <p class="project-title">ARIMA Cold-Start Predictor</p>
+          <p class="project-desc">
+            ML-enhanced predictive pre-warming system for serverless functions. Uses ARIMA
+            time-series forecasting to anticipate cold starts and reduce latency.
+            Cloud computing research project (COMP 6910).
+          </p>
+          <div class="project-stack">
+            <span>Python</span><span>ARIMA</span><span>scikit-learn</span><span>Cloud</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/kelechiede" class="muted" target="_blank" rel="noopener">GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <p class="project-num">06</p>
+          <p class="project-title">Ambiguity Detector for Grammars</p>
+          <p class="project-desc">
+            Academic bonus project detecting ambiguity in programming language grammars using
+            the Lark parser library. Includes a Word report and working Python implementation
+            covering CFG theory and parse-tree analysis.
+          </p>
+          <div class="project-stack">
+            <span>Python</span><span>Lark parser</span><span>CFGs</span><span>Formal languages</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/kelechiede" class="muted" target="_blank" rel="noopener">GitHub &rarr;</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CRUD APPS DIVIDER -->
+      <div style="margin: 4rem 0 2.5rem; display: flex; align-items: center; gap: 1.2rem;">
+        <p class="section-label" style="margin: 0; white-space: nowrap;">Live CRUD applications</p>
+        <div style="flex: 1; height: 1px; background: var(--rule);"></div>
+        <span style="font-family: var(--mono); font-size: 0.7rem; color: var(--ink-3); white-space: nowrap; letter-spacing: 0.06em;">Publicly hosted &bull; In development</span>
+      </div>
+      <p style="font-size: 0.95rem; color: var(--ink-2); max-width: 600px; line-height: 1.7; margin-bottom: 2.5rem;">
+        Full-stack CRUD applications built to demonstrate real-world software engineering,
+        data analytics, and database development skills — each publicly hosted with live demos
+        and source code on GitHub.
+      </p>
+
+      <div class="projects-grid">
+
+        <div class="project-card featured">
+          <p class="project-num green">07 &mdash; Highest impact</p>
+          <p class="project-title">Public CV + Project Showcase API</p>
+          <p class="project-desc">
+            A live JSON REST API that serves portfolio data — projects, skills, education,
+            and certifications. Recruiters and developers can query GET /projects, GET /skills,
+            and GET /education. A React frontend consumes it live. Auto-generated Swagger docs
+            at /docs demonstrate professional API design.
+          </p>
+          <div class="project-stack">
+            <span>FastAPI</span><span>SQLite</span><span>React</span><span>OpenAPI docs</span><span>Vercel + Render</span>
+          </div>
+          <div class="project-links">
+            <a href="#" aria-label="Live demo">&#9654; Live demo</a>
+            <a href="https://github.com/kelechiede" class="muted" target="_blank" rel="noopener">GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <p class="project-num">08</p>
+          <p class="project-title">Student Grade Tracker</p>
+          <p class="project-desc">
+            Teachers create courses, add students, log grades per assignment, and view
+            aggregated performance charts. Publicly viewable class summaries with filtering
+            by subject or cohort. Directly reflects Data Analytics Instructor experience.
+          </p>
+          <div class="project-stack">
+            <span>FastAPI</span><span>SQLite</span><span>React</span><span>Chart.js</span><span>Render + Vercel</span>
+          </div>
+          <div class="project-links">
+            <a href="#" aria-label="Live demo">&#9654; Live demo</a>
+            <a href="https://github.com/kelechiede" class="muted" target="_blank" rel="noopener">GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <p class="project-num">09</p>
+          <p class="project-title">ML Experiment Tracker</p>
+          <p class="project-desc">
+            Log ML runs with hyperparameters, metrics (accuracy, loss, F1), and model names.
+            Compare experiments side by side with a public read-only leaderboard of best runs.
+            Signals MLOps awareness to data engineering and ML engineering recruiters.
+          </p>
+          <div class="project-stack">
+            <span>FastAPI</span><span>PostgreSQL</span><span>Next.js</span><span>Render + Vercel</span>
+          </div>
+          <div class="project-links">
+            <a href="#" aria-label="Live demo">&#9654; Live demo</a>
+            <a href="https://github.com/kelechiede" class="muted" target="_blank" rel="noopener">GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <p class="project-num">10</p>
+          <p class="project-title">Open Dataset Registry</p>
+          <p class="project-desc">
+            A public catalogue of datasets — upload metadata (name, source, format, size, domain),
+            tag by category, and search or filter. Anyone can browse; only admins create and edit
+            entries. Demonstrates Oracle &amp; IBM data engineering principles in a live app.
+          </p>
+          <div class="project-stack">
+            <span>FastAPI</span><span>SQLite</span><span>HTML/CSS</span><span>Render (free)</span>
+          </div>
+          <div class="project-links">
+            <a href="#" aria-label="Live demo">&#9654; Live demo</a>
+            <a href="https://github.com/kelechiede" class="muted" target="_blank" rel="noopener">GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <p class="project-num">11</p>
+          <p class="project-title">Cloud Resource Log</p>
+          <p class="project-desc">
+            Track simulated cloud deployments — create VM instances, assign CPU, RAM and cost,
+            and log uptime. A public dashboard shows resource usage over time with cost
+            estimation charts. Built on COMP 6910 cloud computing research.
+          </p>
+          <div class="project-stack">
+            <span>FastAPI</span><span>SQLite</span><span>Plotly</span><span>Render (free)</span>
+          </div>
+          <div class="project-links">
+            <a href="#" aria-label="Live demo">&#9654; Live demo</a>
+            <a href="https://github.com/kelechiede" class="muted" target="_blank" rel="noopener">GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <p class="project-num">12</p>
+          <p class="project-title">Job Application Tracker</p>
+          <p class="project-desc">
+            A Kanban-style board to manage job applications — add roles, companies, status
+            (applied / interview / offer / rejected), and notes. Shareable public view for
+            accountability. Full-stack React + FastAPI with drag-and-drop status updates.
+          </p>
+          <div class="project-stack">
+            <span>React</span><span>FastAPI</span><span>SQLite</span><span>Vercel + Render</span>
+          </div>
+          <div class="project-links">
+            <a href="#" aria-label="Live demo">&#9654; Live demo</a>
+            <a href="https://github.com/kelechiede" class="muted" target="_blank" rel="noopener">GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <p class="project-num">13</p>
+          <p class="project-title">VLC Signal Experiment Log</p>
+          <p class="project-desc">
+            Log VLC experiment parameters — wavelength, distance, modulation scheme, and
+            measured BER/SNR values. Public read view with sortable table and live plotted
+            BER-vs-distance curves. Direct companion to ENGI 9872 VLC research at MUN.
+          </p>
+          <div class="project-stack">
+            <span>FastAPI</span><span>SQLite</span><span>Plotly</span><span>Render (free)</span>
+          </div>
+          <div class="project-links">
+            <a href="#" aria-label="Live demo">&#9654; Live demo</a>
+            <a href="https://github.com/kelechiede" class="muted" target="_blank" rel="noopener">GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <p class="project-num">14</p>
+          <p class="project-title">Algorithm Benchmark Recorder</p>
+          <p class="project-desc">
+            Submit sorting, graph, and dynamic programming algorithm benchmarks on varying
+            input sizes and log runtimes. A public leaderboard compares algorithm performance.
+            Great companion to a visual algorithm demo page built on COMP 6901 work.
+          </p>
+          <div class="project-stack">
+            <span>Python</span><span>FastAPI</span><span>D3.js</span><span>Render + GitHub Pages</span>
+          </div>
+          <div class="project-links">
+            <a href="#" aria-label="Live demo">&#9654; Live demo</a>
+            <a href="https://github.com/kelechiede" class="muted" target="_blank" rel="noopener">GitHub &rarr;</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION & CERTS -->
+  <section id="education">
+    <div class="container">
+      <div class="edu-grid">
+        <div>
+          <p class="section-label">Education</p>
+          <h2>Academic<br>background</h2>
+          <p class="section-sub" style="margin-bottom:2rem;">Three degrees across computer science, data science, and software engineering.</p>
+
+          <div class="edu-card">
+            <p class="edu-degree">MSc Software Engineering</p>
+            <p class="edu-school">Memorial University of Newfoundland &bull; Canada</p>
+            <p class="edu-year">2024 &ndash; Present &bull; Specialising in Software Engineering</p>
+          </div>
+
+          <div class="edu-card">
+            <p class="edu-degree">MSc Data Science</p>
+            <p class="edu-school">Oslo Metropolitan University &bull; Norway</p>
+            <p class="edu-year">Completed 2023 &bull; ML, Statistical Modelling, Visualisation</p>
+          </div>
+
+          <div class="edu-card">
+            <p class="edu-degree">BSc Computer Science</p>
+            <p class="edu-school">Benson Idahosa University &bull; Benin City, Nigeria</p>
+            <p class="edu-year">Graduated 2018 &bull; Foundation in software, algorithms, data structures &amp; systems</p>
+          </div>
+
+          <div class="edu-card">
+            <p class="edu-degree">Child Care Services Certification</p>
+            <p class="edu-school">AECENL / Keyin College &bull; Newfoundland</p>
+            <p class="edu-year">In progress &bull; Cohort 7A &bull; AECENL Preschool Orientation</p>
+          </div>
+        </div>
+
+        <div>
+          <p class="section-label">Certifications</p>
+          <h2>Professional<br>credentials</h2>
+          <p class="section-sub" style="margin-bottom:2rem;">Industry-recognised certifications in data and analytics.</p>
+
+          <div class="cert-row">
+            <div class="cert-icon" style="background:var(--amber-lt);color:var(--amber);">ORC</div>
+            <div>
+              <p class="cert-name">Oracle Certified &mdash; Data Analytics</p>
+              <p class="cert-issuer">Oracle Corporation</p>
+            </div>
+          </div>
+          <div class="cert-row">
+            <div class="cert-icon" style="background:#dce8f8;color:#185FA5;">IBM</div>
+            <div>
+              <p class="cert-name">IBM Certified &mdash; Data Analytics</p>
+              <p class="cert-issuer">IBM</p>
+            </div>
+          </div>
+          <div class="cert-row">
+            <div class="cert-icon" style="background:var(--accent-lt);color:var(--accent);">MUN</div>
+            <div>
+              <p class="cert-name">Graduate Research &mdash; VLC Systems</p>
+              <p class="cert-issuer">Memorial University of Newfoundland</p>
+            </div>
+          </div>
+          <div class="cert-row">
+            <div class="cert-icon" style="background:var(--paper-3);color:var(--ink-2);">EDU</div>
+            <div>
+              <p class="cert-name">Data Analytics Instruction</p>
+              <p class="cert-issuer">Industry &mdash; Professional experience</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <p class="section-label">Get in touch</p>
+          <h2 style="color:var(--paper);">Let's work<br><em style="color:#6fcfa0;">together</em></h2>
+          <p class="contact-text">
+            I'm open to software engineering, data science, data analytics, database development,
+            and ML engineering roles. Available for full-time positions, research collaborations,
+            and contract work — remote or in Canada.
+          </p>
+          <div class="contact-links">
+            <a href="mailto:info@kelechiededata.org" class="contact-link">
+              <div class="contact-link-icon">&#9993;</div>
+              <span>info@kelechiededata.org</span>
+              <span class="arrow">&rarr;</span>
+            </a>
+            <a href="https://linkedin.com/in/kelechiede" target="_blank" rel="noopener" class="contact-link">
+              <div class="contact-link-icon">in</div>
+              <span>linkedin.com/in/kelechiede</span>
+              <span class="arrow">&rarr;</span>
+            </a>
+            <a href="https://github.com/kelechiede" target="_blank" rel="noopener" class="contact-link">
+              <div class="contact-link-icon">gh</div>
+              <span>github.com/kelechiede</span>
+              <span class="arrow">&rarr;</span>
+            </a>
+            <a href="https://kelechiededata.org" target="_blank" rel="noopener" class="contact-link">
+              <div class="contact-link-icon">&#127760;</div>
+              <span>kelechiededata.org</span>
+              <span class="arrow">&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <p style="font-size:0.8rem;color:rgba(245,242,236,0.4);font-family:var(--mono);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1rem;">Send a message</p>
+          <form class="contact-form" onsubmit="handleSubmit(event)">
+            <input type="text" placeholder="Your name" required />
+            <input type="email" placeholder="Your email" required />
+            <input type="text" placeholder="Subject" />
+            <textarea placeholder="Your message..."></textarea>
+            <button type="submit" class="btn btn-light">Send message &rarr;</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      &copy; 2025 Kelechukwu Innocent Ede &nbsp;&middot;&nbsp;
+      Student ID: 202580616 &nbsp;&middot;&nbsp;
+      <a href="mailto:info@kelechiededata.org">info@kelechiededata.org</a>
+      &nbsp;&middot;&nbsp;
+      Built with HTML, CSS &amp; JS &nbsp;&middot;&nbsp; Hosted on Vercel
+    </p>
+  </footer>
+
+  <!-- SCROLL TO TOP BUTTON -->
+  <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+    aria-label="Scroll to top"
+    style="
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--paper);
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s;
+      z-index: 200;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    ">
+    &#8593;
+  </button>
+
+  <script>
+    // ── Hamburger / mobile menu ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    // Close drawer when any mobile nav link is clicked
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Close drawer on outside click
+    document.addEventListener('click', (e) => {
+      if (mobileMenu.classList.contains('open') &&
+          !mobileMenu.contains(e.target) &&
+          !hamburger.contains(e.target)) {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // ── Active nav highlight on scroll ──
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(a => a.style.color = '');
+          const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+          if (active) active.style.color = 'var(--accent)';
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(s => observer.observe(s));
+
+    // ── Contact form handler ──
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      btn.textContent = 'Message sent ✓';
+      btn.style.background = 'var(--accent)';
+      btn.style.color = '#fff';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Send message →';
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 3000);
+    }
+
+    // ── Scroll to top button ──
+    const scrollBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      const show = window.scrollY > 400;
+      scrollBtn.style.opacity = show ? '1' : '0';
+      scrollBtn.style.transform = show ? 'translateY(0)' : 'translateY(12px)';
+      scrollBtn.style.pointerEvents = show ? 'all' : 'none';
+    });
+    scrollBtn.addEventListener('mouseenter', () => {
+      scrollBtn.style.background = 'var(--accent)';
+    });
+    scrollBtn.addEventListener('mouseleave', () => {
+      scrollBtn.style.background = 'var(--ink)';
+    });
+  </script>
+</body>
+</html>
